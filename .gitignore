@@ -1,0 +1,79 @@
+# ─── Quartus ────────────────────────────────────────────────────────────────
+output_files/
+db/
+incremental_db/
+*.qws
+*.rpt
+*.smsg
+*.summary
+*.jdi
+*.pin
+*.sof
+*.sld
+*.done
+*.rbf
+# ECCEZIONE: il bitstream gia' compilato si pubblica in releases/
+!releases/*.rbf
+c5_pin_model_dump.txt
+jtag.cdf
+report_worst.tcl
+_sta_*.tcl
+_sta_*.txt
+
+# ─── Verilator / sim ────────────────────────────────────────────────────────
+# I SORGENTI in tools/sim/ vanno versionati; qui solo gli artefatti di build.
+# (i .gch di Verilator sono da ~160 MB: sopra il limite di 100 MB di GitHub,
+#  erano loro a impedire il push)
+obj_dir/
+obj_tb/
+tools/obj_dir/
+tools/obj_tb/
+tools/obj_138e/
+tools/obj_spr/
+tools/obj_crt/
+*.gch
+*.o
+*.a
+*.exe
+*.d
+work/
+transcript
+*.wlf
+modelsim.ini
+
+# ─── ROM e dump: mai nel repo ───────────────────────────────────────────────
+rom/
+*.zip
+*.bin
+*.hex
+# ECCEZIONI: questi .hex NON sono dump di ROM, sono dati che il core carica con
+# $readmemh in sintesi. Senza di loro il progetto non compila.
+#   font_darius.hex  -> font dell'overlay di pausa (pause_text.sv)
+#   jt6295_up4*.hex  -> coefficienti del FIR 4x, usati con INTERPOL(1)
+!logo/font_darius.hex
+!jt6295_up4.hex
+!rtl/sound/jt6295/*.hex
+
+# ─── Log e temporanei ───────────────────────────────────────────────────────
+*.log
+*.bak
+*~
+build_log.txt
+serv_req_info.txt
+cr_ie_info.json
+
+# ─── Materiale locale (studio, archivi, sorgenti terzi) ─────────────────────
+_dev/
+_archive/
+_debug_archive/
+reference/
+docs/reverse_engineering/*.bin
+releases/_gen_variants.pl
+releases/_template.mra
+
+# ─── Editor / tooling ───────────────────────────────────────────────────────
+CLAUDE.md
+SeibuCup_assignment_defaults.qdf
+.claude/
+.vscode/
+.idea/
